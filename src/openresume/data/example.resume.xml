@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resume xmlns="urn:openresume:2.0" version="2.0">
+  <name>Alex Morgan</name>
+  <title>Senior Software Engineer | Cloud Platforms | Data &amp; Integration | Automation</title>
+  <contact>
+    <location>Bengaluru, India</location>
+    <email>you@example.com</email>
+    <phone>+91 90000 00000</phone>
+    <website>https://example.com</website>
+    <linkedin>linkedin.com/in/example</linkedin>
+  </contact>
+
+  <summary>Senior software engineer with 10+ years building and operating cloud platforms, data pipelines, and integration services at scale. Proven track record of leading migrations from monoliths to containerised microservices, designing event-driven data flows, and automating delivery with infrastructure-as-code and CI/CD. Comfortable owning a problem end to end — from design and implementation through SIT/UAT, cutover, and post-release support. Pragmatic user of AI-assisted tooling for faster development, with human-in-the-loop review.</summary>
+
+  <competencies>
+    <group name="Cloud &amp; DevOps">
+      <skill>Kubernetes &amp; Docker</skill>
+      <skill>AWS / Azure fundamentals</skill>
+      <skill>Terraform (infrastructure-as-code)</skill>
+      <skill>CI/CD (GitHub Actions, pipelines)</skill>
+      <skill>Observability (metrics, logs, traces)</skill>
+      <skill>Cost &amp; performance optimisation</skill>
+    </group>
+    <group name="Languages &amp; Frameworks">
+      <skill>Python (FastAPI, data tooling)</skill>
+      <skill>TypeScript / Node.js</skill>
+      <skill>Java &amp; Go</skill>
+      <skill>React (front-end)</skill>
+      <skill>SQL &amp; schema design</skill>
+    </group>
+    <group name="Data &amp; Integration">
+      <skill>Apache Kafka / event streaming</skill>
+      <skill>REST / gRPC APIs</skill>
+      <skill>PostgreSQL / Snowflake</skill>
+      <skill>ETL / dbt pipelines</skill>
+      <skill>API gateways &amp; auth</skill>
+      <skill>System integration &amp; testing</skill>
+    </group>
+  </competencies>
+
+  <projects>
+    <project>
+      <title>Cloud Migration &amp; Platform Modernisation</title>
+      <company>Northwind Technologies</company>
+      <role>Senior Software Engineer</role>
+      <duration>2023 – Present</duration>
+      <notes>
+        <note>Led the migration of a monolithic application to containerised microservices on Kubernetes, designing end-to-end service boundaries and data flows</note>
+        <note>Introduced infrastructure-as-code with Terraform and automated CI/CD, cutting release lead time from days to hours</note>
+        <note>Improved observability with structured logging, metrics, and tracing, reducing mean time to resolution for production incidents</note>
+        <note>Reduced cloud infrastructure spend by roughly 30% through right-sizing and autoscaling</note>
+      </notes>
+    </project>
+    <project>
+      <title>Real-Time Data Pipeline</title>
+      <company>Northwind Technologies</company>
+      <role>Senior Software Engineer</role>
+      <duration>2023 – Present</duration>
+      <notes>
+        <note>Designed an event-driven Kafka pipeline processing streaming events with exactly-once semantics and backpressure handling</note>
+        <note>Built reconciliation and error-tracking reports to surface mismatches and enable branch-level resolution</note>
+        <note>Exposed curated datasets to analysts via a governed warehouse layer and dashboards</note>
+      </notes>
+    </project>
+    <project>
+      <title>API Gateway &amp; Developer Portal</title>
+      <company>Contoso Ltd</company>
+      <role>Software Engineer</role>
+      <duration>2020 – 2023</duration>
+      <notes>
+        <note>Delivered a unified API gateway with centralised authentication, rate limiting, and request validation</note>
+        <note>Stood up a self-service developer portal and wrote setup guides and a SIT/UAT test workbook</note>
+        <note>Trained product teams on the integrated request-to-fulfilment flow</note>
+      </notes>
+    </project>
+    <project>
+      <title>Legacy ETL Optimisation</title>
+      <company>Contoso Ltd</company>
+      <role>Software Engineer</role>
+      <duration>2020 – 2023</duration>
+      <notes>
+        <note>Rewrote nightly batch jobs into incremental, idempotent pipelines with automated validation</note>
+        <note>Reduced batch window by over 60% and eliminated manual reconciliation steps</note>
+        <note>Added data-quality checks and alerting to catch upstream anomalies early</note>
+      </notes>
+    </project>
+    <project>
+      <title>Internal Automation Toolkit</title>
+      <company>Acme Solutions</company>
+      <role>Software Engineer</role>
+      <duration>2017 – 2020</duration>
+      <notes>
+        <note>Built Python utilities to automate recurring data extraction, mapping, and loading tasks</note>
+        <note>Packaged the tooling with tests and documentation so other teams could adopt it</note>
+      </notes>
+    </project>
+  </projects>
+
+  <experience>
+    <position>
+      <period>2023 – Present</period>
+      <role>Senior Software Engineer</role>
+      <company>Northwind Technologies</company>
+    </position>
+    <position>
+      <period>2020 – 2023</period>
+      <role>Software Engineer</role>
+      <company>Contoso Ltd</company>
+    </position>
+    <position>
+      <period>2017 – 2020</period>
+      <role>Software Engineer</role>
+      <company>Acme Solutions</company>
+    </position>
+    <position>
+      <period>2015 – 2017</period>
+      <role>Junior Developer</role>
+      <company>Acme Solutions</company>
+    </position>
+  </experience>
+
+  <education>
+    <degree>
+      <qualification>B.Tech in Computer Science</qualification>
+      <institution>Example Institute of Technology</institution>
+      <period>2015</period>
+    </degree>
+  </education>
+
+  <additional>
+    <item label="Languages">English, Hindi</item>
+    <item label="Work preference">Remote / Hybrid</item>
+    <item label="Open source">github.com/example</item>
+  </additional>
+</resume>

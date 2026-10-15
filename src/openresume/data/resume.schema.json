@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openresume:2.0",
+  "title": "OpenResume",
+  "description": "An open, renderer-agnostic resume format with named fields. JSON form of urn:openresume:2.0. The same data can be expressed as XML (resume.xsd) or JSON and converted losslessly.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "string", "default": "2.0" },
+    "name": { "type": "string", "minLength": 1 },
+    "title": { "type": "string" },
+    "contact": { "$ref": "#/$defs/contact" },
+    "summary": { "type": "string" },
+    "competencies": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/competencyGroup" }
+    },
+    "projects": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/project" }
+    },
+    "experience": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/position" }
+    },
+    "education": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/degree" }
+    },
+    "additional": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/additionalItem" }
+    }
+  },
+  "$defs": {
+    "contact": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "location": { "type": "string" },
+        "website": { "type": "string" },
+        "linkedin": { "type": "string" },
+        "github": { "type": "string" }
+      }
+    },
+    "competencyGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "skills"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "skills": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "company": { "type": "string" },
+        "role": { "type": "string" },
+        "duration": { "type": "string" },
+        "description": { "type": "string" },
+        "notes": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "position": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "company"],
+      "properties": {
+        "period": { "type": "string" },
+        "role": { "type": "string", "minLength": 1 },
+        "company": { "type": "string", "minLength": 1 }
+      }
+    },
+    "degree": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["qualification"],
+      "properties": {
+        "qualification": { "type": "string", "minLength": 1 },
+        "institution": { "type": "string" },
+        "period": { "type": "string" }
+      }
+    },
+    "additionalItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "value"],
+      "properties": {
+        "label": { "type": "string", "minLength": 1 },
+        "value": { "type": "string" }
+      }
+    }
+  }
+}

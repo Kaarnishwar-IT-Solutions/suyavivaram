@@ -1,0 +1,147 @@
+{
+  "version": "2.0",
+  "name": "Alex Morgan",
+  "title": "Senior Software Engineer | Cloud Platforms | Data & Integration | Automation",
+  "contact": {
+    "email": "you@example.com",
+    "phone": "+91 90000 00000",
+    "location": "Bengaluru, India",
+    "website": "https://example.com",
+    "linkedin": "linkedin.com/in/example"
+  },
+  "summary": "Senior software engineer with 10+ years building and operating cloud platforms, data pipelines, and integration services at scale. Proven track record of leading migrations from monoliths to containerised microservices, designing event-driven data flows, and automating delivery with infrastructure-as-code and CI/CD. Comfortable owning a problem end to end — from design and implementation through SIT/UAT, cutover, and post-release support. Pragmatic user of AI-assisted tooling for faster development, with human-in-the-loop review.",
+  "competencies": [
+    {
+      "name": "Cloud & DevOps",
+      "skills": [
+        "Kubernetes & Docker",
+        "AWS / Azure fundamentals",
+        "Terraform (infrastructure-as-code)",
+        "CI/CD (GitHub Actions, pipelines)",
+        "Observability (metrics, logs, traces)",
+        "Cost & performance optimisation"
+      ]
+    },
+    {
+      "name": "Languages & Frameworks",
+      "skills": [
+        "Python (FastAPI, data tooling)",
+        "TypeScript / Node.js",
+        "Java & Go",
+        "React (front-end)",
+        "SQL & schema design"
+      ]
+    },
+    {
+      "name": "Data & Integration",
+      "skills": [
+        "Apache Kafka / event streaming",
+        "REST / gRPC APIs",
+        "PostgreSQL / Snowflake",
+        "ETL / dbt pipelines",
+        "API gateways & auth",
+        "System integration & testing"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Cloud Migration & Platform Modernisation",
+      "company": "Northwind Technologies",
+      "role": "Senior Software Engineer",
+      "duration": "2023 – Present",
+      "notes": [
+        "Led the migration of a monolithic application to containerised microservices on Kubernetes, designing end-to-end service boundaries and data flows",
+        "Introduced infrastructure-as-code with Terraform and automated CI/CD, cutting release lead time from days to hours",
+        "Improved observability with structured logging, metrics, and tracing, reducing mean time to resolution for production incidents",
+        "Reduced cloud infrastructure spend by roughly 30% through right-sizing and autoscaling"
+      ]
+    },
+    {
+      "title": "Real-Time Data Pipeline",
+      "company": "Northwind Technologies",
+      "role": "Senior Software Engineer",
+      "duration": "2023 – Present",
+      "notes": [
+        "Designed an event-driven Kafka pipeline processing streaming events with exactly-once semantics and backpressure handling",
+        "Built reconciliation and error-tracking reports to surface mismatches and enable branch-level resolution",
+        "Exposed curated datasets to analysts via a governed warehouse layer and dashboards"
+      ]
+    },
+    {
+      "title": "API Gateway & Developer Portal",
+      "company": "Contoso Ltd",
+      "role": "Software Engineer",
+      "duration": "2020 – 2023",
+      "notes": [
+        "Delivered a unified API gateway with centralised authentication, rate limiting, and request validation",
+        "Stood up a self-service developer portal and wrote setup guides and a SIT/UAT test workbook",
+        "Trained product teams on the integrated request-to-fulfilment flow"
+      ]
+    },
+    {
+      "title": "Legacy ETL Optimisation",
+      "company": "Contoso Ltd",
+      "role": "Software Engineer",
+      "duration": "2020 – 2023",
+      "notes": [
+        "Rewrote nightly batch jobs into incremental, idempotent pipelines with automated validation",
+        "Reduced batch window by over 60% and eliminated manual reconciliation steps",
+        "Added data-quality checks and alerting to catch upstream anomalies early"
+      ]
+    },
+    {
+      "title": "Internal Automation Toolkit",
+      "company": "Acme Solutions",
+      "role": "Software Engineer",
+      "duration": "2017 – 2020",
+      "notes": [
+        "Built Python utilities to automate recurring data extraction, mapping, and loading tasks",
+        "Packaged the tooling with tests and documentation so other teams could adopt it"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "role": "Senior Software Engineer",
+      "company": "Northwind Technologies",
+      "period": "2023 – Present"
+    },
+    {
+      "role": "Software Engineer",
+      "company": "Contoso Ltd",
+      "period": "2020 – 2023"
+    },
+    {
+      "role": "Software Engineer",
+      "company": "Acme Solutions",
+      "period": "2017 – 2020"
+    },
+    {
+      "role": "Junior Developer",
+      "company": "Acme Solutions",
+      "period": "2015 – 2017"
+    }
+  ],
+  "education": [
+    {
+      "qualification": "B.Tech in Computer Science",
+      "institution": "Example Institute of Technology",
+      "period": "2015"
+    }
+  ],
+  "additional": [
+    {
+      "label": "Languages",
+      "value": "English, Hindi"
+    },
+    {
+      "label": "Work preference",
+      "value": "Remote / Hybrid"
+    },
+    {
+      "label": "Open source",
+      "value": "github.com/example"
+    }
+  ]
+}

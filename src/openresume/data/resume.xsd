@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  OpenResume XML schema - version 2.0
+  Namespace: urn:openresume:2.0
+  License: MIT (see LICENSE)
+
+  Named, domain-specific fields: name, title, contact, summary, competencies,
+  projects (title/company/role/duration/description/notes), experience,
+  education, additional. This is the single source of truth; layouts (PDF,
+  HTML, DOCX) are rendered from it and it is not tied to any renderer.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="urn:openresume:2.0"
+           targetNamespace="urn:openresume:2.0"
+           elementFormDefault="qualified">
+
+  <xs:element name="resume">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name" type="xs:string"/>
+        <xs:element name="title" type="xs:string" minOccurs="0"/>
+        <xs:element name="contact" type="tns:ContactType" minOccurs="0"/>
+        <xs:element name="summary" type="xs:string" minOccurs="0"/>
+        <xs:element name="competencies" type="tns:CompetenciesType" minOccurs="0"/>
+        <xs:element name="projects" type="tns:ProjectsType" minOccurs="0"/>
+        <xs:element name="experience" type="tns:ExperienceType" minOccurs="0"/>
+        <xs:element name="education" type="tns:EducationType" minOccurs="0"/>
+        <xs:element name="additional" type="tns:AdditionalType" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute name="version" type="xs:string" default="2.0"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="ContactType">
+    <xs:all>
+      <xs:element name="email" type="xs:string" minOccurs="0"/>
+      <xs:element name="phone" type="xs:string" minOccurs="0"/>
+      <xs:element name="location" type="xs:string" minOccurs="0"/>
+      <xs:element name="website" type="xs:string" minOccurs="0"/>
+      <xs:element name="linkedin" type="xs:string" minOccurs="0"/>
+      <xs:element name="github" type="xs:string" minOccurs="0"/>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="CompetenciesType">
+    <xs:sequence>
+      <xs:element name="group" type="tns:CompetencyGroupType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CompetencyGroupType">
+    <xs:sequence>
+      <xs:element name="skill" type="xs:string" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="ProjectsType">
+    <xs:sequence>
+      <xs:element name="project" type="tns:ProjectType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ProjectType">
+    <xs:sequence>
+      <xs:element name="title" type="xs:string"/>
+      <xs:element name="company" type="xs:string" minOccurs="0"/>
+      <xs:element name="role" type="xs:string" minOccurs="0"/>
+      <xs:element name="duration" type="xs:string" minOccurs="0"/>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+      <xs:element name="notes" type="tns:NotesType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="NotesType">
+    <xs:sequence>
+      <xs:element name="note" type="xs:string" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ExperienceType">
+    <xs:sequence>
+      <xs:element name="position" type="tns:PositionType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PositionType">
+    <xs:sequence>
+      <xs:element name="period" type="xs:string" minOccurs="0"/>
+      <xs:element name="role" type="xs:string"/>
+      <xs:element name="company" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="EducationType">
+    <xs:sequence>
+      <xs:element name="degree" type="tns:DegreeType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DegreeType">
+    <xs:sequence>
+      <xs:element name="qualification" type="xs:string"/>
+      <xs:element name="institution" type="xs:string" minOccurs="0"/>
+      <xs:element name="period" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AdditionalType">
+    <xs:sequence>
+      <xs:element name="item" type="tns:AdditionalItemType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AdditionalItemType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="label" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.tox/
+
+# Build artifacts
+*.pdf
+!docs/**/*.pdf
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
