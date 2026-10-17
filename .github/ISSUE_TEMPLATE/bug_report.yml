@@ -1,0 +1,61 @@
+name: Bug report
+description: Report a defect in the toolkit, schemas, renderer, or docs.
+title: "bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug! A **minimal** reproducing document makes this much faster to fix.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the bug, including any error output.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. ...
+        2. ...
+    validations:
+      required: true
+  - type: textarea
+    id: document
+    attributes:
+      label: Minimal document (XML or JSON)
+      description: Paste the smallest `resume.xml` / `resume.json` that triggers the issue.
+      render: xml
+    validations:
+      required: false
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Suyavivaram version
+      description: Output of `suyavivaram --version` (or the release/tag).
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      description: Operating system and Python version.
+      placeholder: Windows 11, Python 3.12
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues and this is not a duplicate.
+          required: true

@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Live validator & preview
+    url: https://kaarnishwar-it-solutions.github.io/suyavivaram/
+    about: Try the format in your browser (no install).
+  - name: Specification
+    url: https://github.com/Kaarnishwar-IT-Solutions/suyavivaram/blob/main/spec/SPEC.md
+    about: Read the format specification before proposing a schema change.
+  - name: Questions & ideas
+    url: https://github.com/Kaarnishwar-IT-Solutions/suyavivaram/discussions
+    about: Ask questions and discuss ideas with the community.

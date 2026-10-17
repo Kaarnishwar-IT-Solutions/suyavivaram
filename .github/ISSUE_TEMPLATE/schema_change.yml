@@ -1,0 +1,53 @@
+name: Schema / format change
+description: Propose a change to the Suyavivaram format (urn:suyavivaram:2.0).
+title: "schema: "
+labels: ["format", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Format changes are **versioned**. Additive, optional fields are a MINOR bump;
+        breaking changes bump the MAJOR version and the namespace (`urn:suyavivaram:N.0`).
+
+        A change is only complete when the XSD, the JSON Schema, the mirrored copies
+        (`src/suyavivaram/data/`, `docs/`), the spec (`spec/SPEC.md`), the changelog and
+        the tests are all updated together. See `CONTRIBUTING.md`.
+  - type: textarea
+    id: change
+    attributes:
+      label: Proposed change
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation / use case
+    validations:
+      required: true
+  - type: dropdown
+    id: breaking
+    attributes:
+      label: Is this backwards compatible?
+      options:
+        - Additive and optional (MINOR)
+        - Breaking (MAJOR)
+        - Unsure
+    validations:
+      required: true
+  - type: dropdown
+    id: serialisation
+    attributes:
+      label: Affected serialisation(s)
+      options:
+        - Both XML and JSON
+        - XML only
+        - JSON only
+    validations:
+      required: true
+  - type: checkboxes
+    id: willing
+    attributes:
+      label: Contribution
+      options:
+        - label: I am willing to implement this (schemas, spec, examples, tests).
+          required: false
