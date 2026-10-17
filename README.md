@@ -1,5 +1,11 @@
 # Suyavivaram
 
+[![ci](https://github.com/Kaarnishwar-IT-Solutions/suyavivaram/actions/workflows/ci.yml/badge.svg)](https://github.com/Kaarnishwar-IT-Solutions/suyavivaram/actions/workflows/ci.yml)
+[![pages](https://github.com/Kaarnishwar-IT-Solutions/suyavivaram/actions/workflows/pages.yml/badge.svg)](https://kaarnishwar-it-solutions.github.io/suyavivaram/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![format: urn:suyavivaram:2.0](https://img.shields.io/badge/format-urn%3Asuyavivaram%3A2.0-blue.svg)](spec/SPEC.md)
+[![Python](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-blue.svg)](pyproject.toml)
+
 **The XML/JSON is the source of truth. The PDF is just one rendering.**
 
 Suyavivaram is an open, renderer-agnostic resume format plus a small toolkit.
