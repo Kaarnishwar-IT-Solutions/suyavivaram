@@ -36,15 +36,29 @@ resume.xml  ⇄  resume.json          (source of truth, one model)
 
 ## Install
 
-```bash
-pip install suyavivaram
-```
+No package index required — install straight from GitHub.
 
-From source:
+From the latest release wheel:
 
 ```bash
-pip install -e .
+pip install https://github.com/Kaarnishwar-IT-Solutions/suyavivaram/releases/download/v2.0.0/suyavivaram-2.0.0-py3-none-any.whl
 ```
+
+Or directly from the repo:
+
+```bash
+pip install git+https://github.com/Kaarnishwar-IT-Solutions/suyavivaram
+```
+
+From a local clone (development):
+
+```bash
+git clone https://github.com/Kaarnishwar-IT-Solutions/suyavivaram
+cd suyavivaram
+pip install -e ".[dev]"
+```
+
+> On PyPI yet? No — use the GitHub installs above. (Say the word and we'll wire up PyPI via Trusted Publishing, which needs no API key.)
 
 ## Use
 
