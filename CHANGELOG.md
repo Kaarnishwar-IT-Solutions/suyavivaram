@@ -9,7 +9,9 @@ The format is versioned by `MAJOR.MINOR` for the schema; the toolkit uses semver
 - **Format v2.0** (`urn:openresume:2.0`): named, domain-specific fields replace
   the generic v1 `header`/`section` model. Document is now `name`, `title`,
   `contact`, `summary`, `competencies`, `projects`, `experience`, `education`,
-  `additional`. v1 documents are not valid v2 documents.
+  `languages`, `additional`. v1 documents are not valid v2 documents.
+- `contact.linkedin` / `contact.github` are replaced by `contact.profiles`
+  (a JSON Resume-aligned list) so any social network can be listed.
 - Reference renderer now emits a "Modern"-themed **Letter**-size PDF
   (navy header band, Calibri, blue section rules) instead of the old A4 layout.
 
@@ -17,6 +19,12 @@ The format is versioned by `MAJOR.MINOR` for the schema; the toolkit uses semver
 - `openresume serve` — local web validator & preview (stdlib HTTP server).
 - `docs/` — static, client-side validator & live preview for GitHub Pages.
 - GitHub Pages workflow (`.github/workflows/pages.yml`).
+- **Social profiles** on `contact` (`profiles: [{network, username, url}]`,
+  same keys as JSON Resume) replacing the former `linkedin`/`github` fields.
+- **Languages** section (`languages: [{language, proficiency, level}]`), with an
+  optional **CEFR** `level` (A1–C2) as used by Europass.
+- **JSON Resume interop**: `openresume from-jsonresume` / `to-jsonresume`
+  (maps basics, work, education, skills, projects, languages).
 
 ### Changed
 - `convert`, `validate`, tests, examples and the Python API updated for v2.

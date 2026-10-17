@@ -16,7 +16,7 @@ function esc(s) {
     .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
 }
-const CONTACT_ORDER = ["location", "email", "phone", "website", "linkedin", "github"];
+const CONTACT_ORDER = ["location", "email", "phone", "website"];
 
 /* ------------------------------------------------------- XML -> JSON model */
 function xmlToData(text) {
@@ -41,10 +41,18 @@ function xmlToData(text) {
   const c = find(root, "contact");
   if (c) {
     const contact = {};
-    for (const f of ["email", "phone", "location", "website", "linkedin", "github"]) {
+    for (const f of ["email", "phone", "location", "website"]) {
       const el = find(c, f);
       if (el && txt(el) !== "") contact[f] = txt(el);
     }
+    const profiles = kids(c).filter((x) => x.localName === "profile").map((pr) => {
+      const p = { network: pr.getAttribute("network") };
+      if (pr.getAttribute("username")) p.username = pr.getAttribute("username");
+      const url = txt(pr);
+      if (url !== "") p.url = url;
+      return p;
+    });
+    if (profiles.length) contact.profiles = profiles;
     if (Object.keys(contact).length) data.contact = contact;
   }
 
@@ -92,6 +100,16 @@ function xmlToData(text) {
         if (el) d[f] = txt(el);
       }
       return d;
+    });
+  }
+
+  const lang = find(root, "languages");
+  if (lang) {
+    data.languages = kids(lang).filter((x) => x.localName === "language").map((lg) => {
+      const item = { language: txt(lg) };
+      if (lg.getAttribute("proficiency")) item.proficiency = lg.getAttribute("proficiency");
+      if (lg.getAttribute("level")) item.level = lg.getAttribute("level");
+      return item;
     });
   }
 
@@ -146,9 +164,12 @@ function validate(root, schema, value, path, errors) {
 /* --------------------------------------------------------------- preview -- */
 function renderPreview(data) {
   let h = "";
-  const contactLine = CONTACT_ORDER
+  const contactBits = CONTACT_ORDER
     .filter((f) => data.contact && data.contact[f])
-    .map((f) => esc(data.contact[f])).join("&nbsp;&nbsp;|&nbsp;&nbsp;");
+    .map((f) => esc(data.contact[f]));
+  (data.contact && data.contact.profiles ? data.contact.profiles : [])
+    .forEach((p) => { if (p.network) contactBits.push(esc(p.network)); });
+  const contactLine = contactBits.join("&nbsp;&nbsp;|&nbsp;&nbsp;");
 
   h += '<div class="header"><div class="name">' + esc(data.name) + "</div>";
   if (data.title) h += '<div class="title">' + esc(data.title) + "</div>";
@@ -207,6 +228,15 @@ function renderPreview(data) {
            (d.institution ? ' <span>&mdash; ' + esc(d.institution) + "</span>" : "") +
            (d.period ? ' <span>(' + esc(d.period) + ")</span>" : "") + "</p>";
     });
+  }
+
+  if (data.languages && data.languages.length) {
+    h += '<div class="section-title">Languages</div><ul class="extra">';
+    data.languages.forEach((lg) => {
+      const detail = [lg.proficiency, lg.level ? "(" + lg.level + ")" : ""].filter(Boolean).join(" — ");
+      h += "<li><b>" + esc(lg.language) + "</b>" + (detail ? " <span>" + esc(detail) + "</span>" : "") + "</li>";
+    });
+    h += "</ul>";
   }
 
   if (data.additional && data.additional.length) {

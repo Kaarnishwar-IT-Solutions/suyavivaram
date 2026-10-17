@@ -24,6 +24,7 @@ resume.xml  ⇄  resume.json          (source of truth, one model)
 - **Machine + AI friendly.** A strict schema makes automated parsing and generation reliable.
 - **Self-describing output.** The rendered PDF carries its own source XML/JSON.
 - **Zero-dependency to consume.** Read the JSON, or validate the XML against the XSD.
+- **Interoperable.** Import/export **JSON Resume**, and mirror Europass's CEFR language levels.
 
 ## Install
 
@@ -44,6 +45,8 @@ openresume validate resume.xml      # or resume.json
 openresume convert  resume.xml resume.json
 openresume render   resume.xml -o resume.pdf
 openresume serve                     # local web validator & preview (http://127.0.0.1:8000)
+openresume from-jsonresume resume.json -o resume.xml   # JSON Resume -> OpenResume
+openresume to-jsonresume   resume.xml  -o resume.json   # OpenResume -> JSON Resume
 ```
 
 As a library:
@@ -83,13 +86,18 @@ One model with **named fields**, in two equivalent serialisations:
 |---|---|---|---|
 | name | `<name>` | `name` | header title |
 | title | `<title>` | `title` | header subtitle |
-| contact | `<contact><email/>…</contact>` | `contact: {email, …}` | header contact line |
+| contact | `<contact><email/>…</contact>` | `contact: {email, phone, location, website}` | header contact line |
+| social profiles | `<profile network="…">url</profile>` | `contact.profiles: [{network, username, url}]` | header (network names) |
 | summary | `<summary>` | `summary` | paragraph |
 | competencies | `<group name><skill/></group>` | `competencies: [{name, skills}]` | multi-column table |
 | projects | `<project><title/><notes><note/></notes></project>` | `projects: [{title, notes}]` | titled blocks |
 | experience | `<position><role/><company/></position>` | `experience: [{role, company}]` | table |
 | education | `<degree><qualification/></degree>` | `education: [{qualification}]` | lines |
+| languages | `<language proficiency="…" level="…">name</language>` | `languages: [{language, proficiency, level}]` | bullet list |
 | additional | `<item label>value</item>` | `additional: [{label, value}]` | bullet list |
+
+`profiles` and `languages` use the same key names as **JSON Resume**, and
+`level` carries an optional **CEFR** code (A1–C2) as in **Europass**.
 
 See **[spec/SPEC.md](spec/SPEC.md)** for the full specification and
 **[examples/](examples/)** for complete files (`resume.xml`, `resume.json`).
@@ -100,7 +108,7 @@ See **[spec/SPEC.md](spec/SPEC.md)** for the full specification and
 schema/     resume.xsd, resume.schema.json   # the format
 spec/       SPEC.md                           # the specification
 examples/   resume.xml, resume.json           # full examples
-src/openresume/                               # toolkit (convert, validate, render, serve, cli)
+src/openresume/                               # toolkit (convert, validate, render, interop, serve, cli)
 docs/                                         # static GitHub Pages validator & preview
 tests/                                        # pytest suite
 ```

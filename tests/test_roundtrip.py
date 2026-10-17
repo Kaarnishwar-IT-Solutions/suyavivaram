@@ -16,6 +16,8 @@ def test_example_has_content():
     assert len(d["competencies"]) >= 2
     assert len(d["projects"]) >= 3
     assert len(d["experience"]) >= 2
+    assert d["contact"]["profiles"]
+    assert d["languages"]
 
 
 def test_projects_have_named_fields():

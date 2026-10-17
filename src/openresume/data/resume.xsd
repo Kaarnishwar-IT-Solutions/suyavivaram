@@ -4,10 +4,11 @@
   Namespace: urn:openresume:2.0
   License: MIT (see LICENSE)
 
-  Named, domain-specific fields: name, title, contact, summary, competencies,
-  projects (title/company/role/duration/description/notes), experience,
-  education, additional. This is the single source of truth; layouts (PDF,
-  HTML, DOCX) are rendered from it and it is not tied to any renderer.
+  Named, domain-specific fields: name, title, contact (with social profiles),
+  summary, competencies, projects (title/company/role/duration/description/
+  notes), experience, education, languages, additional. This is the single
+  source of truth; layouts (PDF, HTML, DOCX) are rendered from it and it is not
+  tied to any renderer.
 -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:tns="urn:openresume:2.0"
@@ -25,6 +26,7 @@
         <xs:element name="projects" type="tns:ProjectsType" minOccurs="0"/>
         <xs:element name="experience" type="tns:ExperienceType" minOccurs="0"/>
         <xs:element name="education" type="tns:EducationType" minOccurs="0"/>
+        <xs:element name="languages" type="tns:LanguagesType" minOccurs="0"/>
         <xs:element name="additional" type="tns:AdditionalType" minOccurs="0"/>
       </xs:sequence>
       <xs:attribute name="version" type="xs:string" default="2.0"/>
@@ -32,14 +34,27 @@
   </xs:element>
 
   <xs:complexType name="ContactType">
-    <xs:all>
+    <xs:sequence>
       <xs:element name="email" type="xs:string" minOccurs="0"/>
       <xs:element name="phone" type="xs:string" minOccurs="0"/>
       <xs:element name="location" type="xs:string" minOccurs="0"/>
       <xs:element name="website" type="xs:string" minOccurs="0"/>
-      <xs:element name="linkedin" type="xs:string" minOccurs="0"/>
-      <xs:element name="github" type="xs:string" minOccurs="0"/>
-    </xs:all>
+      <xs:element name="profile" type="tns:ProfileType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--
+    A social/professional profile. The element text is the profile URL (optional);
+    `network` names the site (e.g. LinkedIn, GitHub, Facebook) and `username` is
+    the handle on that site. Mirrors JSON Resume's { network, username, url }.
+  -->
+  <xs:complexType name="ProfileType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="network" type="xs:string" use="required"/>
+        <xs:attribute name="username" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
   </xs:complexType>
 
   <xs:complexType name="CompetenciesType">
@@ -116,6 +131,26 @@
     <xs:simpleContent>
       <xs:extension base="xs:string">
         <xs:attribute name="label" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="LanguagesType">
+    <xs:sequence>
+      <xs:element name="language" type="tns:LanguageType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--
+    A spoken language. Element text is the language name; `proficiency` is a
+    free-text label (e.g. Native, Fluent, Professional working proficiency) and
+    `level` is an optional CEFR code (A1..C2) for cross-border comparability.
+  -->
+  <xs:complexType name="LanguageType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="proficiency" type="xs:string"/>
+        <xs:attribute name="level" type="xs:string"/>
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>

@@ -164,12 +164,11 @@ def _style(**kw):
 class _Renderer:
     def __init__(self, data):
         self.data = data
-        contact_line = "   |   ".join(
-            data["contact"][f]
-            for f in ("location", "email", "phone", "website", "linkedin", "github")
-            if data.get("contact", {}).get(f)
-        )
-        self.contact_line = contact_line
+        contact = data.get("contact", {})
+        parts = [contact[f] for f in ("location", "email", "phone", "website")
+                 if contact.get(f)]
+        parts += [p["network"] for p in contact.get("profiles", []) if p.get("network")]
+        self.contact_line = "   |   ".join(parts)
         self.title = data.get("title", "")
 
         self.st = {
@@ -335,6 +334,22 @@ class _Renderer:
         out.append(Spacer(1, 4))
         return out
 
+    def _languages(self, languages):
+        out = []
+        for lg in languages:
+            detail = " \u2014 ".join(
+                x for x in (
+                    lg.get("proficiency"),
+                    f"({lg['level']})" if lg.get("level") else None,
+                ) if x
+            )
+            text = f'<b><font color="#1B2A4A">{_esc(lg["language"])}</font></b>'
+            if detail:
+                text += f' <font color="#5A5A5A">{_esc(detail)}</font>'
+            out.append(Paragraph(text, self.st["extra"], bulletText=TRIANGLE))
+        out.append(Spacer(1, 4))
+        return out
+
     def _additional(self, items):
         return [
             Paragraph(
@@ -362,6 +377,9 @@ class _Renderer:
         if self.data.get("education"):
             s += self._section_title("Education")
             s += self._education(self.data["education"])
+        if self.data.get("languages"):
+            s += self._section_title("Languages")
+            s += self._languages(self.data["languages"])
         if self.data.get("additional"):
             s += self._section_title("Additional Details")
             s += self._additional(self.data["additional"])

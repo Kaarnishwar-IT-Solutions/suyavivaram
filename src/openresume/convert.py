@@ -12,7 +12,7 @@ NS = "urn:openresume:2.0"
 NSMAP = {None: NS}
 _Q = "{%s}" % NS
 
-CONTACT_FIELDS = ("email", "phone", "location", "website", "linkedin", "github")
+CONTACT_FIELDS = ("email", "phone", "location", "website")
 PROJECT_FIELDS = ("company", "role", "duration", "description")
 
 
@@ -85,6 +85,17 @@ def xml_to_dict(source):
     c = root.find("contact")
     if c is not None:
         contact = {f: v for f in CONTACT_FIELDS if (v := _text_opt(c, f)) is not None}
+        profiles = []
+        for pr in c.findall("profile"):
+            prof = {"network": pr.get("network")}
+            if pr.get("username"):
+                prof["username"] = pr.get("username")
+            url = _t(pr)
+            if url:
+                prof["url"] = url
+            profiles.append(prof)
+        if profiles:
+            contact["profiles"] = profiles
         if contact:
             data["contact"] = contact
 
@@ -137,6 +148,18 @@ def xml_to_dict(source):
             degrees.append(deg)
         data["education"] = degrees
 
+    lang = root.find("languages")
+    if lang is not None:
+        languages = []
+        for lg in lang.findall("language"):
+            item = {"language": _t(lg)}
+            if lg.get("proficiency"):
+                item["proficiency"] = lg.get("proficiency")
+            if lg.get("level"):
+                item["level"] = lg.get("level")
+            languages.append(item)
+        data["languages"] = languages
+
     ad = root.find("additional")
     if ad is not None:
         data["additional"] = [
@@ -168,6 +191,11 @@ def dict_to_xml(data):
         for field in CONTACT_FIELDS:
             if data["contact"].get(field):
                 _sub(c, field, data["contact"][field])
+        for pr in data["contact"].get("profiles", []):
+            el = _sub(c, "profile", pr.get("url"))
+            el.set("network", pr["network"])
+            if pr.get("username"):
+                el.set("username", pr["username"])
 
     if data.get("summary"):
         _sub(root, "summary", data["summary"])
@@ -210,6 +238,15 @@ def dict_to_xml(data):
             for field in ("institution", "period"):
                 if dg.get(field):
                     _sub(del_, field, dg[field])
+
+    if data.get("languages"):
+        lang = _sub(root, "languages")
+        for lg in data["languages"]:
+            el = _sub(lang, "language", lg["language"])
+            if lg.get("proficiency"):
+                el.set("proficiency", lg["proficiency"])
+            if lg.get("level"):
+                el.set("level", lg["level"])
 
     if data.get("additional"):
         ad = _sub(root, "additional")

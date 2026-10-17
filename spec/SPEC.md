@@ -7,9 +7,9 @@
 OpenResume defines a single logical resume model with two normative
 serialisations: XML (schema: `resume.xsd`) and JSON (schema: `resume.schema.json`).
 The two are losslessly convertible. A renderer consumes the model; it does not
-read the serialisation. v2.0 introduces **named, domain-specific fields** (name,
+read the serialisation. v2.0 uses **named, domain-specific fields** (name,
 title, contact, summary, competencies, projects, experience, education,
-additional) replacing the generic `header`/`section` model of v1.0.
+languages, additional) replacing the generic `header`/`section` model of v1.0.
 
 ## 1. Conformance
 
@@ -31,24 +31,31 @@ Resume
   projects     : Project[]          (optional, >= 1)
   experience   : Position[]         (optional, >= 1)
   education    : Degree[]           (optional, >= 1)
+  languages    : Language[]         (optional, >= 1)
   additional   : AdditionalItem[]   (optional, >= 1)
 ```
 
 Elements appear in the order above (XML `xs:sequence`). Every field except
-`name` is optional; a consumer MUST ignore no field it does not understand
-within the model, and unknown fields are rejected by the schema.
+`name` is optional; unknown fields are rejected by the schema.
 
 ## 3. Contact
 
 ```
-Contact                       (all fields optional, any order — XML xs:all)
+Contact                          (scalar fields, in this order; all optional)
   email    : string
   phone    : string
   location : string
   website  : string
-  linkedin : string
-  github   : string
+  profiles : Profile[]           (optional, >= 1)
+Profile
+  network  : string              (required)  - e.g. LinkedIn, GitHub, Facebook
+  username : string              (optional)
+  url      : string              (optional)  - element text
 ```
+
+Profiles mirror JSON Resume's `profiles` entries (`{network, username, url}`) so
+social links interoperate. A profile may carry only a `network`, only a `url`,
+or both.
 
 ## 4. Competencies
 
@@ -88,29 +95,43 @@ Degree
   period        : string   (optional)
 ```
 
-## 8. Additional
+## 8. Languages
+
+```
+Language
+  language    : string   (required)  - element text, e.g. "English"
+  proficiency : string   (optional)  - free-text label, e.g. "Native"
+  level       : string   (optional)  - CEFR code, e.g. A1..C2
+```
+
+`proficiency` is a human-readable label; `level` is the optional CEFR code used
+for cross-border comparison (Europass uses the same A1–C2 scale).
+
+## 9. Additional
 
 ```
 AdditionalItem
   label : string   (required)  - XML attribute `label`
-  value : string   (required)
+  value : string   (required)  - element text
 ```
 
-## 9. XML ⇄ JSON mapping
+## 10. XML ⇄ JSON mapping
 
 | Model | XML | JSON |
 |---|---|---|
 | name | `<name>` | `name` |
 | title | `<title>` | `title` |
-| contact | `<contact><email/><phone/>…</contact>` | `contact: {email, phone, …}` |
+| contact | `<contact><email/><phone/><location/><website/></contact>` | `contact: {email, phone, location, website}` |
+| profile | `<profile network="…" username="…">url</profile>` | `contact.profiles: [{network, username, url}]` |
 | summary | `<summary>` | `summary` |
 | competency group | `<group name="…"><skill/></group>` | `{name, skills: []}` |
 | project | `<project><title/><company/><role/><duration/><description/><notes><note/></notes></project>` | `{title, company, role, duration, description, notes: []}` |
 | position | `<position><period/><role/><company/></position>` | `{period, role, company}` |
 | degree | `<degree><qualification/><institution/><period/></degree>` | `{qualification, institution, period}` |
+| language | `<language proficiency="…" level="…">name</language>` | `{language, proficiency, level}` |
 | additional item | `<item label="…">value</item>` | `{label, value}` |
 
-## 10. Namespaces & versioning
+## 11. Namespaces & versioning
 
 - XML namespace: `urn:openresume:2.0`. The root element MUST be in this namespace.
 - JSON documents MAY carry `"$schema": "urn:openresume:2.0"`.
@@ -120,20 +141,28 @@ AdditionalItem
 - v1.0 documents (`urn:openresume:1.0`, `header`/`section`) are **not** valid
   v2.0 documents. A v1→v2 migration is a restructure, not a rename.
 
-## 11. Round-trip guarantee
+## 12. Round-trip guarantee
 
 `xml_to_dict` ∘ `to_xml_string` is lossless for conformant documents:
 `xml_to_dict(to_xml_string(xml_to_dict(doc))) == xml_to_dict(doc)`.
 Whitespace in text is trimmed; no other normalisation is applied.
 
-## 12. Rendering (non-normative)
+## 13. Rendering (non-normative)
 
 Rendering to PDF, HTML, DOCX, etc. is implementation-defined. The reference
 renderer emits a "Modern"-themed Letter-size PDF and MAY attach the source
 document as an embedded file so the output is self-describing. A renderer MUST
 NOT require information not present in the model.
 
-## 13. Extension
+## 14. Interoperability (non-normative)
+
+The reference toolkit includes a JSON Resume importer/exporter
+(`openresume from-jsonresume` / `to-jsonresume`). It maps the overlapping
+sections (basics, work, education, skills, projects, languages); JSON Resume's
+CEFR-less languages carry the OpenResume `level` inside `fluency`
+(e.g. `"Native (C2)"`).
+
+## 15. Extension
 
 Unknown/optional data for a given deployment SHOULD be carried in separate
 namespaced elements/keys so conformant readers can ignore it. Such extensions

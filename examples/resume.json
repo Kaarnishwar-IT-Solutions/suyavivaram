@@ -7,7 +7,18 @@
     "phone": "+91 90000 00000",
     "location": "Bengaluru, India",
     "website": "https://example.com",
-    "linkedin": "linkedin.com/in/example"
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "example",
+        "url": "https://linkedin.com/in/example"
+      },
+      {
+        "network": "GitHub",
+        "username": "example",
+        "url": "https://github.com/example"
+      }
+    ]
   },
   "summary": "Senior software engineer with 10+ years building and operating cloud platforms, data pipelines, and integration services at scale. Proven track record of leading migrations from monoliths to containerised microservices, designing event-driven data flows, and automating delivery with infrastructure-as-code and CI/CD. Comfortable owning a problem end to end — from design and implementation through SIT/UAT, cutover, and post-release support. Pragmatic user of AI-assisted tooling for faster development, with human-in-the-loop review.",
   "competencies": [
@@ -130,11 +141,24 @@
       "period": "2015"
     }
   ],
-  "additional": [
+  "languages": [
     {
-      "label": "Languages",
-      "value": "English, Hindi"
+      "language": "English",
+      "proficiency": "Native",
+      "level": "C2"
     },
+    {
+      "language": "Hindi",
+      "proficiency": "Professional working proficiency",
+      "level": "C1"
+    },
+    {
+      "language": "Kannada",
+      "proficiency": "Elementary",
+      "level": "A2"
+    }
+  ],
+  "additional": [
     {
       "label": "Work preference",
       "value": "Remote / Hybrid"

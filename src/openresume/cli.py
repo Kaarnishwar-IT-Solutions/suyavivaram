@@ -6,7 +6,9 @@ import sys
 from pathlib import Path
 
 from . import __version__
-from .convert import load_json, xml_to_dict, xml_to_json, json_to_xml
+from .convert import (
+    load_json, to_json_string, to_xml_string, xml_to_dict, xml_to_json, json_to_xml,
+)
 from .render import render_pdf
 from .validate import validate_json, validate_xml
 
@@ -81,6 +83,31 @@ def cmd_serve(args):
     return 0
 
 
+def _write_model(data, out):
+    text = to_xml_string(data) if not _is_json(out) else to_json_string(data)
+    with open(out, "w", encoding="utf-8") as fh:
+        fh.write(text)
+    print(f"wrote {out}")
+    return 0
+
+
+def cmd_from_jsonresume(args):
+    from .interop import from_jsonresume
+
+    return _write_model(from_jsonresume(args.input), args.output)
+
+
+def cmd_to_jsonresume(args):
+    from .interop import to_jsonresume_string
+
+    src = args.input
+    data = load_json(src) if _is_json(src) else xml_to_dict(src)
+    with open(args.output, "w", encoding="utf-8") as fh:
+        fh.write(to_jsonresume_string(data))
+    print(f"wrote {args.output}")
+    return 0
+
+
 def build_parser():
     p = argparse.ArgumentParser(prog="openresume", description="OpenResume toolkit")
     p.add_argument("--version", action="version", version=f"openresume {__version__}")
@@ -108,6 +135,16 @@ def build_parser():
     s.add_argument("--port", type=int, default=8000)
     s.add_argument("--no-browser", action="store_true", help="do not open a browser window")
     s.set_defaults(func=cmd_serve)
+
+    ij = sub.add_parser("from-jsonresume", help="import a JSON Resume (resume.json) into OpenResume")
+    ij.add_argument("input", help="a JSON Resume file")
+    ij.add_argument("-o", "--output", default="resume.xml", help="output .xml or .json")
+    ij.set_defaults(func=cmd_from_jsonresume)
+
+    tj = sub.add_parser("to-jsonresume", help="export an OpenResume document to JSON Resume")
+    tj.add_argument("input", help="an OpenResume .xml or .json file")
+    tj.add_argument("-o", "--output", default="resume.json", help="output JSON Resume file")
+    tj.set_defaults(func=cmd_to_jsonresume)
 
     return p
 

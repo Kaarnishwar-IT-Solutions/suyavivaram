@@ -3,11 +3,12 @@
   <name>Alex Morgan</name>
   <title>Senior Software Engineer | Cloud Platforms | Data &amp; Integration | Automation</title>
   <contact>
-    <location>Bengaluru, India</location>
     <email>you@example.com</email>
     <phone>+91 90000 00000</phone>
+    <location>Bengaluru, India</location>
     <website>https://example.com</website>
-    <linkedin>linkedin.com/in/example</linkedin>
+    <profile network="LinkedIn" username="example">https://linkedin.com/in/example</profile>
+    <profile network="GitHub" username="example">https://github.com/example</profile>
   </contact>
 
   <summary>Senior software engineer with 10+ years building and operating cloud platforms, data pipelines, and integration services at scale. Proven track record of leading migrations from monoliths to containerised microservices, designing event-driven data flows, and automating delivery with infrastructure-as-code and CI/CD. Comfortable owning a problem end to end — from design and implementation through SIT/UAT, cutover, and post-release support. Pragmatic user of AI-assisted tooling for faster development, with human-in-the-loop review.</summary>
@@ -127,8 +128,13 @@
     </degree>
   </education>
 
+  <languages>
+    <language proficiency="Native" level="C2">English</language>
+    <language proficiency="Professional working proficiency" level="C1">Hindi</language>
+    <language proficiency="Elementary" level="A2">Kannada</language>
+  </languages>
+
   <additional>
-    <item label="Languages">English, Hindi</item>
     <item label="Work preference">Remote / Hybrid</item>
     <item label="Open source">github.com/example</item>
   </additional>
