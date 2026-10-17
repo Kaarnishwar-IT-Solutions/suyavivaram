@@ -1,10 +1,12 @@
-# OpenResume
+# Suyavivaram
 
 **The XML/JSON is the source of truth. The PDF is just one rendering.**
 
-OpenResume is an open, renderer-agnostic resume format plus a small toolkit.
+Suyavivaram is an open, renderer-agnostic resume format plus a small toolkit.
 Anyone can read, validate, diff, convert and render a resume — so it can power
 a personal CV, a website's auto-builder, or an AI resume handler.
+
+*Suyavivaram* (சுயவிவரம்) is Tamil for **résumé / CV** — literally "self-details".
 
 ```
 resume.xml  ⇄  resume.json          (source of truth, one model)
@@ -15,7 +17,7 @@ resume.xml  ⇄  resume.json          (source of truth, one model)
 
 > Named in the spirit of **Peppol** — open, reusable, structured documents that
 > render to a human-readable form. (Peppol defines procurement documents, not
-> resumes; OpenResume borrows the *interoperability* principle.)
+> resumes; Suyavivaram borrows the *interoperability* principle.)
 
 ## Why
 
@@ -29,7 +31,7 @@ resume.xml  ⇄  resume.json          (source of truth, one model)
 ## Install
 
 ```bash
-pip install openresume
+pip install suyavivaram
 ```
 
 From source:
@@ -41,19 +43,19 @@ pip install -e .
 ## Use
 
 ```bash
-openresume validate resume.xml      # or resume.json
-openresume convert  resume.xml resume.json
-openresume render   resume.xml -o resume.pdf
-openresume serve                     # local web validator & preview (http://127.0.0.1:8000)
-openresume from-jsonresume resume.json -o resume.xml   # JSON Resume -> OpenResume
-openresume to-jsonresume   resume.xml  -o resume.json   # OpenResume -> JSON Resume
+suyavivaram validate resume.xml      # or resume.json
+suyavivaram convert  resume.xml resume.json
+suyavivaram render   resume.xml -o resume.pdf
+suyavivaram serve                     # local web validator & preview (http://127.0.0.1:8000)
+suyavivaram from-jsonresume resume.json -o resume.xml   # JSON Resume -> Suyavivaram
+suyavivaram to-jsonresume   resume.xml  -o resume.json   # Suyavivaram -> JSON Resume
 ```
 
 As a library:
 
 ```python
-from openresume import xml_to_dict, to_json_string
-from openresume.render import render_pdf
+from suyavivaram import xml_to_dict, to_json_string
+from suyavivaram.render import render_pdf
 
 data = xml_to_dict("resume.xml")
 render_pdf(data, "resume.pdf", embed=("resume.xml", open("resume.xml", "rb").read()))
@@ -66,7 +68,7 @@ Two ways to try it without installing anything:
 - **Static web app** — open `docs/index.html` (published on GitHub Pages). Paste
   XML or JSON, validate against the schema in the browser, and preview the
   "Modern" theme live. Use *Print / Save as PDF* to export.
-- **Local server** — `openresume serve` runs the same page plus real XSD/XSD and
+- **Local server** — `suyavivaram serve` runs the same page plus real XSD/XSD and
   real PDF endpoints (`/api/validate`, `/api/render`).
 
 On a website: fetch `resume.json`, validate against
@@ -80,7 +82,7 @@ One model with **named fields**, in two equivalent serialisations:
 | | XML | JSON |
 |---|---|---|
 | Spec | `schema/resume.xsd` | `schema/resume.schema.json` |
-| Namespace / `$id` | `urn:openresume:2.0` | `urn:openresume:2.0` |
+| Namespace / `$id` | `urn:suyavivaram:2.0` | `urn:suyavivaram:2.0` |
 
 | Part | XML | JSON | Renders as |
 |---|---|---|---|
@@ -108,7 +110,7 @@ See **[spec/SPEC.md](spec/SPEC.md)** for the full specification and
 schema/     resume.xsd, resume.schema.json   # the format
 spec/       SPEC.md                           # the specification
 examples/   resume.xml, resume.json           # full examples
-src/openresume/                               # toolkit (convert, validate, render, interop, serve, cli)
+src/suyavivaram/                               # toolkit (convert, validate, render, interop, serve, cli)
 docs/                                         # static GitHub Pages validator & preview
 tests/                                        # pytest suite
 ```

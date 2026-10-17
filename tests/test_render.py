@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from openresume import xml_to_dict
+from suyavivaram import xml_to_dict
 
 ROOT = Path(__file__).resolve().parents[1]
 EX_XML = ROOT / "examples" / "resume.xml"
@@ -11,7 +11,7 @@ EX_XML = ROOT / "examples" / "resume.xml"
 
 def test_render_produces_pdf(tmp_path):
     pytest.importorskip("reportlab")
-    from openresume.render import render_pdf
+    from suyavivaram.render import render_pdf
 
     out = tmp_path / "resume.pdf"
     render_pdf(xml_to_dict(EX_XML), str(out))
@@ -21,7 +21,7 @@ def test_render_produces_pdf(tmp_path):
 
 def test_render_embeds_source(tmp_path):
     fitz = pytest.importorskip("fitz")
-    from openresume.render import render_pdf
+    from suyavivaram.render import render_pdf
 
     out = tmp_path / "resume.pdf"
     render_pdf(xml_to_dict(EX_XML), str(out),

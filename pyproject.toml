@@ -3,9 +3,9 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "openresume"
+name = "suyavivaram"
 version = "2.0.0"
-description = "An open, renderer-agnostic resume format: XML/JSON source of truth, rendered to PDF."
+description = "Suyavivaram (Tamil for 'résumé'), an open, renderer-agnostic resume format: XML/JSON source of truth, rendered to PDF."
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
@@ -28,18 +28,18 @@ dependencies = [
 dev = ["pytest>=7", "build", "twine"]
 
 [project.urls]
-Homepage = "https://github.com/Kaarnishwar-IT-Solutions/openresume"
-Repository = "https://github.com/Kaarnishwar-IT-Solutions/openresume"
-Changelog = "https://github.com/Kaarnishwar-IT-Solutions/openresume/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/Kaarnishwar-IT-Solutions/suyavivaram"
+Repository = "https://github.com/Kaarnishwar-IT-Solutions/suyavivaram"
+Changelog = "https://github.com/Kaarnishwar-IT-Solutions/suyavivaram/blob/main/CHANGELOG.md"
 
 [project.scripts]
-openresume = "openresume.cli:main"
+suyavivaram = "suyavivaram.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
-openresume = ["data/*"]
+suyavivaram = ["data/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

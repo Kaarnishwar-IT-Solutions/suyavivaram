@@ -1,4 +1,4 @@
-"""Validation for OpenResume documents (XSD for XML, JSON Schema for JSON)."""
+"""Validation for Suyavivaram documents (XSD for XML, JSON Schema for JSON)."""
 import json
 
 from lxml import etree

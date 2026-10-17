@@ -1,4 +1,4 @@
-"""Lossless conversion between OpenResume XML and its JSON form.
+"""Lossless conversion between Suyavivaram XML and its JSON form.
 
 Both representations describe the same model, defined by ``schema/resume.xsd``
 and ``schema/resume.schema.json``. Round-tripping is lossless.
@@ -8,7 +8,7 @@ import os
 
 from lxml import etree
 
-NS = "urn:openresume:2.0"
+NS = "urn:suyavivaram:2.0"
 NSMAP = {None: NS}
 _Q = "{%s}" % NS
 

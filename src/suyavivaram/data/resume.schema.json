@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:openresume:2.0",
-  "title": "OpenResume",
-  "description": "An open, renderer-agnostic resume format with named fields. JSON form of urn:openresume:2.0. The same data can be expressed as XML (resume.xsd) or JSON and converted losslessly.",
+  "$id": "urn:suyavivaram:2.0",
+  "title": "Suyavivaram",
+  "description": "An open, renderer-agnostic resume format with named fields. JSON form of urn:suyavivaram:2.0. The same data can be expressed as XML (resume.xsd) or JSON and converted losslessly.",
   "type": "object",
   "additionalProperties": false,
   "required": ["name"],

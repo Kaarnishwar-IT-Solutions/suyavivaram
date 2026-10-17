@@ -1,5 +1,5 @@
-/* OpenResume online validator - client side.
- * - converts the XML form to the JSON model (mirrors src/openresume/convert.py)
+/* Suyavivaram online validator - client side.
+ * - converts the XML form to the JSON model (mirrors src/suyavivaram/convert.py)
  * - validates the JSON model against resume.schema.json (a small, targeted
  *   implementation of the JSON Schema subset the spec actually uses)
  * - renders a live preview in the "Modern" theme
@@ -26,7 +26,7 @@ function xmlToData(text) {
   const root = doc.documentElement;
   if (root.localName !== "resume") throw new Error("Root element must be <resume> (found <" + root.localName + ">).");
   const ns = root.namespaceURI;
-  if (ns && ns !== "urn:openresume:2.0") throw new Error("Unexpected namespace '" + ns + "' (expected urn:openresume:2.0).");
+  if (ns && ns !== "urn:suyavivaram:2.0") throw new Error("Unexpected namespace '" + ns + "' (expected urn:suyavivaram:2.0).");
 
   const kids = (el) => Array.from(el.children);
   const find = (el, name) => kids(el).find((c) => c.localName === name) || null;
@@ -279,7 +279,7 @@ function run() {
       return;
     }
     pv.innerHTML = renderPreview(data);
-    setStatus(true, "Valid against urn:openresume:2.0.");
+    setStatus(true, "Valid against urn:suyavivaram:2.0.");
     $("meta").textContent = "Rendered preview below — use Print / Save as PDF to export.";
   } catch (e) {
     setStatus(false, [e.message]);

@@ -1,8 +1,8 @@
 """JSON Resume interoperability: import, export and round-trip."""
 from pathlib import Path
 
-from openresume.convert import xml_to_dict
-from openresume.interop import from_jsonresume, to_jsonresume
+from suyavivaram.convert import xml_to_dict
+from suyavivaram.interop import from_jsonresume, to_jsonresume
 
 ROOT = Path(__file__).resolve().parents[1]
 EX_XML = ROOT / "examples" / "resume.xml"

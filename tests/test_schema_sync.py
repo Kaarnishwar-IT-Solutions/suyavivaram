@@ -2,7 +2,7 @@
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "src" / "openresume" / "data"
+DATA = ROOT / "src" / "suyavivaram" / "data"
 DOCS = ROOT / "docs"
 
 PAIRS = [

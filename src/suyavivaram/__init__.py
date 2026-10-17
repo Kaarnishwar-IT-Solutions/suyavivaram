@@ -1,8 +1,8 @@
-"""OpenResume - an open, renderer-agnostic resume format (XML <-> JSON -> PDF).
+"""Suyavivaram - an open, renderer-agnostic resume format (XML <-> JSON -> PDF).
 
 Typical use::
 
-    from openresume import xml_to_dict, render_pdf, to_json_string
+    from suyavivaram import xml_to_dict, render_pdf, to_json_string
 
     data = xml_to_dict("resume.xml")
     render_pdf(data, "resume.pdf", embed=("resume.xml", open("resume.xml","rb").read()))

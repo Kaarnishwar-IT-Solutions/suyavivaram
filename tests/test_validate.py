@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from openresume.validate import validate_json, validate_xml
+from suyavivaram.validate import validate_json, validate_xml
 
 ROOT = Path(__file__).resolve().parents[1]
 XSD = ROOT / "schema" / "resume.xsd"
@@ -24,7 +24,7 @@ def test_example_json_valid():
 
 def test_missing_name_is_invalid_xml():
     bad = ('<?xml version="1.0"?>'
-           '<resume xmlns="urn:openresume:2.0"><title>No name</title></resume>')
+           '<resume xmlns="urn:suyavivaram:2.0"><title>No name</title></resume>')
     ok, errors = validate_xml(bad, XSD)
     assert not ok
     assert errors

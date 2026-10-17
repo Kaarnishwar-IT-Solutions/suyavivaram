@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  OpenResume XML schema - version 2.0
-  Namespace: urn:openresume:2.0
+  Suyavivaram XML schema - version 2.0
+  Namespace: urn:suyavivaram:2.0
   License: MIT (see LICENSE)
 
   Named, domain-specific fields: name, title, contact (with social profiles),
@@ -11,8 +11,8 @@
   tied to any renderer.
 -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:tns="urn:openresume:2.0"
-           targetNamespace="urn:openresume:2.0"
+           xmlns:tns="urn:suyavivaram:2.0"
+           targetNamespace="urn:suyavivaram:2.0"
            elementFormDefault="qualified">
 
   <xs:element name="resume">

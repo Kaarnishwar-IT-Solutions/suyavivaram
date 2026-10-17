@@ -1,8 +1,8 @@
 """Lossless round-trip tests between XML and JSON forms."""
 from pathlib import Path
 
-from openresume import to_xml_string, xml_to_dict, xml_to_json
-from openresume.convert import load_json
+from suyavivaram import to_xml_string, xml_to_dict, xml_to_json
+from suyavivaram.convert import load_json
 
 ROOT = Path(__file__).resolve().parents[1]
 EX_XML = ROOT / "examples" / "resume.xml"

@@ -1,6 +1,6 @@
-"""Local web UI: validate OpenResume XML/JSON and render the exact PDF.
+"""Local web UI: validate Suyavivaram XML/JSON and render the exact PDF.
 
-Run with ``openresume serve`` and open http://127.0.0.1:8000. This is the
+Run with ``suyavivaram serve`` and open http://127.0.0.1:8000. This is the
 high-fidelity counterpart to the static GitHub Pages tester: XML is checked
 against the real XSD and the PDF is produced by the same renderer as the CLI.
 """
@@ -28,7 +28,7 @@ PAGE = """<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OpenResume - validate &amp; preview</title>
+<title>Suyavivaram - validate &amp; preview</title>
 <style>
   :root { --navy:#1b2a4a; --blue:#2c5f8a; --rule:#3a7cbd; --zebra:#e8f0f7; }
   * { box-sizing: border-box; }
@@ -57,7 +57,7 @@ PAGE = """<!DOCTYPE html>
 </head>
 <body>
 <header>
-  <h1>OpenResume</h1>
+  <h1>Suyavivaram</h1>
   <p>Validate XML/JSON against the schema and render the exact PDF &mdash; v__VERSION__</p>
 </header>
 <div class="wrap">
@@ -70,7 +70,7 @@ PAGE = """<!DOCTYPE html>
       <button class="ghost" id="loadJson">Load example JSON</button>
       <input type="file" id="file" accept=".xml,.json">
     </div>
-    <textarea id="input" spellcheck="false" placeholder="&lt;resume xmlns=&quot;urn:openresume:2.0&quot;&gt; ..."></textarea>
+    <textarea id="input" spellcheck="false" placeholder="&lt;resume xmlns=&quot;urn:suyavivaram:2.0&quot;&gt; ..."></textarea>
     <div class="row">
       <button id="validate">Validate</button>
       <button id="render">Render PDF</button>
@@ -148,7 +148,7 @@ def _analyze(fmt, text):
 
 
 class _Handler(BaseHTTPRequestHandler):
-    server_version = "OpenResume/" + __version__
+    server_version = "Suyavivaram/" + __version__
 
     def log_message(self, *args):  # keep the console quiet
         pass
@@ -219,7 +219,7 @@ class _Handler(BaseHTTPRequestHandler):
 def serve(host="127.0.0.1", port=8000, open_browser=True):
     httpd = ThreadingHTTPServer((host, port), _Handler)
     url = f"http://{host}:{port}/"
-    print(f"OpenResume server running at {url}  (Ctrl+C to stop)")
+    print(f"Suyavivaram server running at {url}  (Ctrl+C to stop)")
     if open_browser:
         threading.Timer(0.6, lambda: webbrowser.open(url)).start()
     try:

@@ -1,11 +1,11 @@
 """Interoperability with the JSON Resume standard (https://jsonresume.org).
 
-OpenResume deliberately does not try to replace JSON Resume; it bridges to it.
+Suyavivaram deliberately does not try to replace JSON Resume; it bridges to it.
 :func:`from_jsonresume` reads a ``resume.json`` (JSON Resume) document into the
-OpenResume model; :func:`to_jsonresume` exports the other way. Mapping covers the
+Suyavivaram model; :func:`to_jsonresume` exports the other way. Mapping covers the
 overlapping sections (basics, work, education, skills, projects, languages).
 
-Sections JSON Resume has but OpenResume does not model in this version
+Sections JSON Resume has but Suyavivaram does not model in this version
 (awards, certificates, publications, volunteer, interests, references, meta)
 are not imported. The mapping is intentionally best-effort: free-text periods
 are exchanged with JSON Resume's ``startDate`` field.
@@ -66,7 +66,7 @@ def _location_to_string(loc):
 
 
 # --------------------------------------------------------------------------- #
-# JSON Resume -> OpenResume
+# JSON Resume -> Suyavivaram
 # --------------------------------------------------------------------------- #
 def from_jsonresume(source):
     jr = source if isinstance(source, dict) else load_json(source)
@@ -171,7 +171,7 @@ def from_jsonresume(source):
 
 
 # --------------------------------------------------------------------------- #
-# OpenResume -> JSON Resume
+# Suyavivaram -> JSON Resume
 # --------------------------------------------------------------------------- #
 def to_jsonresume(data):
     contact = data.get("contact") or {}

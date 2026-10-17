@@ -109,8 +109,8 @@ def cmd_to_jsonresume(args):
 
 
 def build_parser():
-    p = argparse.ArgumentParser(prog="openresume", description="OpenResume toolkit")
-    p.add_argument("--version", action="version", version=f"openresume {__version__}")
+    p = argparse.ArgumentParser(prog="suyavivaram", description="Suyavivaram toolkit")
+    p.add_argument("--version", action="version", version=f"suyavivaram {__version__}")
     sub = p.add_subparsers(dest="command", required=True)
 
     v = sub.add_parser("validate", help="validate an XML or JSON resume")
@@ -136,13 +136,13 @@ def build_parser():
     s.add_argument("--no-browser", action="store_true", help="do not open a browser window")
     s.set_defaults(func=cmd_serve)
 
-    ij = sub.add_parser("from-jsonresume", help="import a JSON Resume (resume.json) into OpenResume")
+    ij = sub.add_parser("from-jsonresume", help="import a JSON Resume (resume.json) into Suyavivaram")
     ij.add_argument("input", help="a JSON Resume file")
     ij.add_argument("-o", "--output", default="resume.xml", help="output .xml or .json")
     ij.set_defaults(func=cmd_from_jsonresume)
 
-    tj = sub.add_parser("to-jsonresume", help="export an OpenResume document to JSON Resume")
-    tj.add_argument("input", help="an OpenResume .xml or .json file")
+    tj = sub.add_parser("to-jsonresume", help="export an Suyavivaram document to JSON Resume")
+    tj.add_argument("input", help="an Suyavivaram .xml or .json file")
     tj.add_argument("-o", "--output", default="resume.json", help="output JSON Resume file")
     tj.set_defaults(func=cmd_to_jsonresume)
 

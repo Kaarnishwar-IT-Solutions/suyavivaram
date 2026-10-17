@@ -23,7 +23,7 @@ jobs:
         run: pytest
       - name: Validate examples
         run: |
-          openresume validate examples/resume.xml
-          openresume validate examples/resume.json
+          suyavivaram validate examples/resume.xml
+          suyavivaram validate examples/resume.json
       - name: Render example
-        run: openresume render examples/resume.xml -o resume.pdf
+        run: suyavivaram render examples/resume.xml -o resume.pdf

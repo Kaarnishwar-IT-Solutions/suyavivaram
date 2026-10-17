@@ -1,10 +1,10 @@
-# OpenResume Format Specification — v2.0
+# Suyavivaram Format Specification — v2.0
 
-- **Identifier:** `urn:openresume:2.0`
+- **Identifier:** `urn:suyavivaram:2.0`
 - **Status:** stable
 - **Licence:** MIT
 
-OpenResume defines a single logical resume model with two normative
+Suyavivaram defines a single logical resume model with two normative
 serialisations: XML (schema: `resume.xsd`) and JSON (schema: `resume.schema.json`).
 The two are losslessly convertible. A renderer consumes the model; it does not
 read the serialisation. v2.0 uses **named, domain-specific fields** (name,
@@ -15,7 +15,7 @@ languages, additional) replacing the generic `header`/`section` model of v1.0.
 
 A document is **conformant** if it validates against the relevant schema:
 
-- XML against `schema/resume.xsd` (namespace `urn:openresume:2.0`).
+- XML against `schema/resume.xsd` (namespace `urn:suyavivaram:2.0`).
 - JSON against `schema/resume.schema.json` (Draft 2020-12).
 
 ## 2. Document
@@ -133,12 +133,12 @@ AdditionalItem
 
 ## 11. Namespaces & versioning
 
-- XML namespace: `urn:openresume:2.0`. The root element MUST be in this namespace.
-- JSON documents MAY carry `"$schema": "urn:openresume:2.0"`.
+- XML namespace: `urn:suyavivaram:2.0`. The root element MUST be in this namespace.
+- JSON documents MAY carry `"$schema": "urn:suyavivaram:2.0"`.
 - `version` communicates the format version and defaults to `"2.0"`.
 - Backwards-incompatible changes increment the major version and the namespace.
   Additive, optional fields keep the same major version.
-- v1.0 documents (`urn:openresume:1.0`, `header`/`section`) are **not** valid
+- v1.0 documents (`urn:suyavivaram:1.0`, `header`/`section`) are **not** valid
   v2.0 documents. A v1→v2 migration is a restructure, not a rename.
 
 ## 12. Round-trip guarantee
@@ -157,9 +157,9 @@ NOT require information not present in the model.
 ## 14. Interoperability (non-normative)
 
 The reference toolkit includes a JSON Resume importer/exporter
-(`openresume from-jsonresume` / `to-jsonresume`). It maps the overlapping
+(`suyavivaram from-jsonresume` / `to-jsonresume`). It maps the overlapping
 sections (basics, work, education, skills, projects, languages); JSON Resume's
-CEFR-less languages carry the OpenResume `level` inside `fluency`
+CEFR-less languages carry the Suyavivaram `level` inside `fluency`
 (e.g. `"Native (C2)"`).
 
 ## 15. Extension

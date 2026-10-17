@@ -1,4 +1,4 @@
-"""End-to-end tests for the local `openresume serve` web app (no browser)."""
+"""End-to-end tests for the local `suyavivaram serve` web app (no browser)."""
 import json
 import threading
 import urllib.error
@@ -7,10 +7,10 @@ import urllib.request
 import pytest
 from http.server import ThreadingHTTPServer
 
-from openresume.server import _Handler
+from suyavivaram.server import _Handler
 
 EXAMPLE_XML = b"""<?xml version="1.0" encoding="UTF-8"?>
-<resume xmlns="urn:openresume:2.0" version="2.0">
+<resume xmlns="urn:suyavivaram:2.0" version="2.0">
   <name>Alex Morgan</name>
   <title>Platform Engineer</title>
   <contact><email>you@example.com</email><location>Remote</location></contact>
@@ -42,10 +42,10 @@ def test_index_and_examples(base_url):
     with urllib.request.urlopen(base_url + "/") as r:
         assert r.status == 200
         assert r.headers["Content-Type"].startswith("text/html")
-        assert b"OpenResume" in r.read()
+        assert b"Suyavivaram" in r.read()
 
     xml = urllib.request.urlopen(base_url + "/example.xml").read()
-    assert b"urn:openresume:2.0" in xml
+    assert b"urn:suyavivaram:2.0" in xml
 
     data = json.loads(urllib.request.urlopen(base_url + "/example.json").read())
     assert data["name"]
@@ -60,7 +60,7 @@ def test_validate_ok(base_url):
 
 
 def test_validate_rejects_bad_xml(base_url):
-    bad = b'<resume xmlns="urn:openresume:2.0"><title>no name</title></resume>'
+    bad = b'<resume xmlns="urn:suyavivaram:2.0"><title>no name</title></resume>'
     status, _, body = _post(base_url + "/api/validate", bad, "xml")
     payload = json.loads(body)
     assert status == 200 and payload["ok"] is False and payload["errors"]
@@ -73,7 +73,7 @@ def test_render_returns_pdf(base_url):
 
 
 def test_render_rejects_invalid(base_url):
-    bad = b'<resume xmlns="urn:openresume:2.0"><title>no name</title></resume>'
+    bad = b'<resume xmlns="urn:suyavivaram:2.0"><title>no name</title></resume>'
     req = urllib.request.Request(
         base_url + "/api/render?fmt=xml", data=bad, method="POST")
     try:

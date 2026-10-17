@@ -1,4 +1,4 @@
-"""Render an OpenResume document (dict) into a modern PDF layout.
+"""Render an Suyavivaram document (dict) into a modern PDF layout.
 
 The look mirrors the "Modern" theme: a navy header band, blue section rules,
 zebra competency tables and tight project blocks. The renderer consumes the
@@ -387,7 +387,7 @@ class _Renderer:
 
 
 def render_pdf(data, out_path, embed=None):
-    """Render ``data`` (OpenResume dict) to ``out_path`` (PDF).
+    """Render ``data`` (Suyavivaram dict) to ``out_path`` (PDF).
 
     ``embed`` is an optional ``(filename, bytes)`` pair attached to the PDF so
     the machine-readable source travels with the human-readable layout.
@@ -398,7 +398,7 @@ def render_pdf(data, out_path, embed=None):
     doc = BaseDocTemplate(
         out_path, pagesize=LETTER,
         leftMargin=SIDE, rightMargin=SIDE, topMargin=BOTTOM, bottomMargin=BOTTOM,
-        title=f"{name} — Resume", author=name, subject="OpenResume",
+        title=f"{name} — Resume", author=name, subject="Suyavivaram",
     )
     frame_first = Frame(SIDE, BOTTOM, doc.width,
                         PAGE_H - renderer.band_h - TOP_GAP - BOTTOM, id="first")
