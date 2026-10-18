@@ -88,7 +88,7 @@ Two ways to try it without installing anything:
 - **Static web app** — open `docs/index.html` (published on GitHub Pages). Paste
   XML or JSON, validate against the schema in the browser, and preview the
   "Modern" theme live. Use *Print / Save as PDF* to export.
-- **Local server** — `suyavivaram serve` runs the same page plus real XSD/XSD and
+- **Local server** — `suyavivaram serve` runs the same page plus real XSD validation and
   real PDF endpoints (`/api/validate`, `/api/render`).
 
 On a website: fetch `resume.json`, validate against
@@ -135,10 +135,22 @@ docs/                                         # static GitHub Pages validator & 
 tests/                                        # pytest suite
 ```
 
+## Deployment (GitHub Pages)
+
+The online validator is plain static files in `docs/` (`index.html`, `app.js`,
+`resume.schema.json`, example documents) — no build step. It is deployed by
+`.github/workflows/pages.yml`, which uploads `docs/` as a Pages artifact on every push
+that touches `docs/` (or the workflow itself). Live at:
+
+<https://kaarnishwar-it-solutions.github.io/suyavivaram/>
+
+To host your own: fork, enable Pages with **Source: GitHub Actions**, and push.
+
 ## Contributing
 
 See **[CONTRIBUTING.md](CONTRIBUTING.md)**. The schema is versioned; changes go
-through the spec.
+through the spec. This project follows the
+**[Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md)**.
 
 ## License
 

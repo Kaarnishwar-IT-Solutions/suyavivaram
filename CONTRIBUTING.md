@@ -2,6 +2,9 @@
 
 Thanks for helping improve an open resume format.
 
+By participating you agree to uphold our
+[Code of Conduct](CODE_OF_CONDUCT.md).
+
 ## Ways to contribute
 
 - **Report a bug** or **request a feature** — use the issue forms (they ask for the
